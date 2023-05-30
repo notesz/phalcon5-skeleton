@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Skeleton</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="<?=$this->url->get(['for' => 'frontend-index'])?>">Skeleton</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="<?=$this->url->get(['for' => 'frontend-index'])?>">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=$this->url->get(['for' => 'frontend-testcache'])?>">Cache</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+
+    <!-- flash -->
+    <?=$this->flash->output()?>
+    <!-- flash end -->
+
+    <!-- content -->
+    <div class="col-md-12">
+        <?=$this->getContent() ?>
+    </div>
+    <!-- content end -->
+
+</main>
+
+<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

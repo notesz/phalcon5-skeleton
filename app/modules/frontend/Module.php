@@ -46,7 +46,11 @@ class Module implements ModuleDefinitionInterface
          */
         $di->set('view', function () {
             $view = new View();
+
+            $view->setDI($this);
             $view->setViewsDir(__DIR__ . '/views/');
+            $view->setLayoutsDir($this->getConfig()->application->viewsDir->layout);
+            $view->setTemplateAfter('layout');
             $view->registerEngines([
                 '.phtml' => PhpEngine::class
             ]);

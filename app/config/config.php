@@ -50,6 +50,9 @@ return new \Phalcon\Config\Config([
     'application' => [
         'modules'        => \explode(',', $_ENV['MODULES']),
         'appDir'         => APP_PATH . '/',
+        'viewsDir'       => [
+            'layout' => APP_PATH . '/common/views/',
+        ],
         'modelsDir'      => APP_PATH . '/common/models/',
         'controllersDir' => APP_PATH . '/common/controllers/',
         'migrationsDir'  => APP_PATH . '/migrations/',
