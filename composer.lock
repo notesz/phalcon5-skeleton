@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8973671f2f7a6ac4c0121949716c978",
+    "content-hash": "b458d458961d8d5f45dd26282624b35a",
     "packages": [
         {
             "name": "dariuszp/cli-progress-bar",

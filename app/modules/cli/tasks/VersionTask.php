@@ -16,5 +16,4 @@ class VersionTask extends \Phalcon\Cli\Task
 
         echo $config['version'];
     }
-
 }

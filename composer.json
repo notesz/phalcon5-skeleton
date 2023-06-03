@@ -7,7 +7,7 @@
     "ext-phalcon" : "5.*",
     "ext-pdo": "*",
     "vlucas/phpdotenv": "v5.5.0",
-    "dariuszp/cli-progress-bar": "1.0.5",
+    "dariuszp/cli-progress-bar": "^1.0",
     "guzzlehttp/guzzle": "7.7.0",
     "phalcon/devtools": "^4.2"
   },

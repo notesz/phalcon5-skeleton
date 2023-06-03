@@ -7,10 +7,13 @@
  * @author Norbert Lakatos <norbert@innobotics.eu>
  */
 
-use Phalcon\Di\FactoryDefault\Cli as FactoryDefault;
-use Phalcon\Cli\Console as ConsoleApp;
+use Phalcon\Cli\Console;
+use Phalcon\Cli\Dispatcher;
+use Phalcon\Cli\Console\Exception as PhalconException;
+use Phalcon\Di\FactoryDefault\Cli as CliDI;
+use Phalcon\Loader\Loader;
 
-error_reporting(0);
+error_reporting(E_ALL);
 
 date_default_timezone_set('Europe/Budapest');
 
@@ -25,14 +28,20 @@ require BASE_PATH . '/vendor/autoload.php';
 /**
  * Environment variables
  */
-$dotenv = new Dotenv\Dotenv(BASE_PATH);
+$dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
 $dotenv->load();
 
 /**
  * The FactoryDefault Dependency Injector automatically registers the services that
  * provide a full stack framework. These default services can be overidden with custom ones.
  */
-$di = new FactoryDefault();
+$di  = new CliDI();
+$dispatcher = new Dispatcher();
+
+$dispatcher = new Dispatcher();
+
+$dispatcher->setDefaultNamespace('Skeleton\Modules\Cli\Tasks');
+$di->setShared('dispatcher', $dispatcher);
 
 /**
  * Include general services
@@ -57,7 +66,7 @@ $config = $di->getConfig();
 /**
  * Create a console application
  */
-$console = new ConsoleApp($di);
+$console = new Console($di);
 
 /**
  * Register console modules
@@ -87,13 +96,14 @@ foreach ($argv as $k => $arg) {
 }
 
 try {
-    /**
-     * Handle
-     */
     $console->handle($arguments);
-
-} catch (Exception $e) {
-    echo $e->getMessage() . PHP_EOL;
-    echo $e->getTraceAsString() . PHP_EOL;
-    exit(255);
+} catch (PhalconException $e) {
+    fwrite(STDERR, $e->getMessage() . PHP_EOL);
+    exit(1);
+} catch (\Throwable $throwable) {
+    fwrite(STDERR, $throwable->getMessage() . PHP_EOL);
+    exit(1);
+} catch (\Exception $exception) {
+    fwrite(STDERR, $exception->getMessage() . PHP_EOL);
+    exit(1);
 }

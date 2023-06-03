@@ -12,11 +12,11 @@ class HelpTask extends \Phalcon\Cli\Task
 {
     public function mainAction()
     {
-        echo 'Use: pp [OPTIONS][FUNCTION][PARAMETERS]' . PHP_EOL;
+        echo 'Use: ./cli [OPTIONS][FUNCTION][PARAMETERS]' . PHP_EOL;
         echo '' . PHP_EOL;
         echo 'Options:' . PHP_EOL;
         echo ' --version     show version information' . PHP_EOL;
+        echo ' --test        some test' . PHP_EOL;
         echo ' --help        show this help' . PHP_EOL;
     }
-
 }

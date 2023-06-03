@@ -2,8 +2,8 @@
 
 namespace Skeleton\Modules\Cli;
 
-use Phalcon\DiInterface;
-use Phalcon\Loader;
+use Phalcon\Di\DiInterface;
+use Phalcon\Autoload\Loader;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 
 /**
@@ -23,7 +23,7 @@ class Module implements ModuleDefinitionInterface
     {
         $loader = new Loader();
 
-        $loader->registerNamespaces([
+        $loader->setNamespaces([
             'Skeleton\Modules\Cli\Tasks' => __DIR__ . '/tasks/',
             'Skeleton\Common\Models'     => __DIR__ . '/../../common/models/'
         ]);
