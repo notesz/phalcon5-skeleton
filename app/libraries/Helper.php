@@ -10,7 +10,6 @@ namespace Skeleton\Library;
  */
 class Helper
 {
-
     /**
      * Get client ip.
      *
@@ -49,7 +48,7 @@ class Helper
      *
      * @return string   The friendly string.
      */
-    public function getFriendlyName($string, $limit = 160)
+    public static function getFriendlyName($string, $limit = 160)
     {
         $str = \strtolower(
             \preg_replace(
@@ -68,19 +67,5 @@ class Helper
         }
 
         return $str;
-    }
-
-    /**
-     * Debugger
-     *
-     * @param $content
-     *
-     * @return void
-     */
-    public function dump($content)
-    {
-        echo (new \Phalcon\Debug\Dump())->variable($content);
-
-        die();
     }
 }
