@@ -8,10 +8,8 @@
  */
 
 use Phalcon\Cli\Console;
-use Phalcon\Cli\Dispatcher;
 use Phalcon\Cli\Console\Exception as PhalconException;
 use Phalcon\Di\FactoryDefault\Cli as CliDI;
-use Phalcon\Loader\Loader;
 
 error_reporting(E_ALL);
 
@@ -35,13 +33,7 @@ $dotenv->load();
  * The FactoryDefault Dependency Injector automatically registers the services that
  * provide a full stack framework. These default services can be overidden with custom ones.
  */
-$di  = new CliDI();
-$dispatcher = new Dispatcher();
-
-$dispatcher = new Dispatcher();
-
-$dispatcher->setDefaultNamespace('Skeleton\Modules\Cli\Tasks');
-$di->setShared('dispatcher', $dispatcher);
+$di = new CliDI();
 
 /**
  * Include general services
