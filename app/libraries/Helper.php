@@ -34,9 +34,21 @@ class Helper
      */
     public static function getRandomString($length = 20)
     {
-        $random = new \Phalcon\Security\Random();
+        $random = new \Phalcon\Encryption\Security\Random();
 
         return \substr($random->hex(300), 0, $length);
+    }
+
+    /**
+     * Get a random uuid.
+     *
+     * @return string
+     */
+    public static function getUuid()
+    {
+        $random = new \Phalcon\Encryption\Security\Random();
+
+        return $random->uuid();
     }
 
     /**
