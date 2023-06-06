@@ -76,4 +76,8 @@ return new \Phalcon\Config\Config([
     'session' => [
         'expire' => 3600
     ],
+
+    'log' => [
+        'dir' => BASE_PATH . '/log/'
+    ],
 ]);

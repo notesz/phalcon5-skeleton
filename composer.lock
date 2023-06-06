@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b458d458961d8d5f45dd26282624b35a",
+    "content-hash": "f99068104d060a8fa8310f5b2db68aaf",
     "packages": [
         {
             "name": "dariuszp/cli-progress-bar",
@@ -901,6 +901,72 @@
             "time": "2021-12-10T08:24:47+00:00"
         },
         {
+            "name": "phalcon/proxy-psr3",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phalcon/proxy-psr3.git",
+                "reference": "11937e55eb51ed3f54f35d05ee88e6542ff5e876"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phalcon/proxy-psr3/zipball/11937e55eb51ed3f54f35d05ee88e6542ff5e876",
+                "reference": "11937e55eb51ed3f54f35d05ee88e6542ff5e876",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4 <9.0",
+                "psr/log": "^1.1"
+            },
+            "require-dev": {
+                "codeception/codeception": "^4.1",
+                "codeception/module-asserts": "^2.0",
+                "codeception/module-filesystem": "^2.0",
+                "friendsofphp/php-cs-fixer": "^3.7",
+                "pds/skeleton": "^1.0",
+                "phalcon/ide-stubs": "^5.0",
+                "phpstan/phpstan": "^1.4",
+                "squizlabs/php_codesniffer": "^3.6",
+                "vimeo/psalm": "^4.22"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phalcon\\Logger\\": "fake/Logger/",
+                    "Phalcon\\Traits\\": "fake/Traits/",
+                    "Phalcon\\Proxy\\Psr3\\": "src/",
+                    "Phalcon\\Proxy\\Psr3\\Tests\\Unit\\": "tests/unit/",
+                    "Phalcon\\Proxy\\Psr3\\Tests\\Fixtures\\": "tests/_data/fixtures/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Phalcon Framework proxy classes for PSR-3",
+            "keywords": [
+                "framework",
+                "phalcon",
+                "php",
+                "psr-3"
+            ],
+            "support": {
+                "issues": "https://github.com/phalcon/proxy-psr3/issues",
+                "source": "https://github.com/phalcon/proxy-psr3/tree/1.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/phalcon",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/phalcon",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2022-09-28T14:14:25+00:00"
+        },
+        {
             "name": "phpoption/phpoption",
             "version": "1.9.1",
             "source": {
@@ -1189,6 +1255,56 @@
             "time": "2023-04-04T09:54:51+00:00"
         },
         {
+            "name": "psr/log",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/log/tree/1.1.4"
+            },
+            "time": "2021-05-03T11:20:27+00:00"
+        },
+        {
             "name": "psy/psysh",
             "version": "v0.11.18",
             "source": {
@@ -1400,16 +1516,16 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.2.1",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e"
+                "reference": "7c3aff79d10325257a001fcf92d991f24fc967cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e",
-                "reference": "e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/7c3aff79d10325257a001fcf92d991f24fc967cf",
+                "reference": "7c3aff79d10325257a001fcf92d991f24fc967cf",
                 "shasum": ""
             },
             "require": {
@@ -1418,7 +1534,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.3-dev"
+                    "dev-main": "3.4-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -1447,7 +1563,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.2.1"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.3.0"
             },
             "funding": [
                 {
@@ -1463,7 +1579,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-01T10:25:55+00:00"
+            "time": "2023-05-23T14:45:45+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
