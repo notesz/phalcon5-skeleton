@@ -80,4 +80,15 @@ return new \Phalcon\Config\Config([
     'log' => [
         'dir' => BASE_PATH . '/log/'
     ],
+
+    'mailer' => [
+        'XMailer'           => $_ENV['PROJECT'] . ' (' . $_ENV['ENVIRONMENT'] . ')',
+        'senderName'        => $_ENV['MAIL_SENDER_NAME'],
+        'senderEmail'       => $_ENV['MAIL_SENDER_EMAIL'],
+        'smtpHost'          => $_ENV['MAIL_SMTP_HOST'],
+        'smtpPort'          => $_ENV['MAIL_SMTP_PORT'],
+        'smtpSecure'        => $_ENV['MAIL_SMTP_SECURE'],
+        'smtpUsername'      => $_ENV['MAIL_SMTP_USER'],
+        'smtpPassword'      => $_ENV['MAIL_SMTP_PASSWORD']
+    ],
 ]);

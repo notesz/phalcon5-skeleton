@@ -6,6 +6,7 @@
 !/data/sitemap/.htaccess
 !/data/.gitkeep
 !/data/.htaccess
+!/data/dummy.pdf
 /config/development/
 .idea/workspace.xml
 .idea/tasks.xml

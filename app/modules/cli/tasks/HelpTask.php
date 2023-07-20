@@ -15,6 +15,7 @@ class HelpTask extends \Phalcon\Cli\Task
         echo 'Use: ./cli [OPTIONS][FUNCTION][PARAMETERS]' . PHP_EOL;
         echo '' . PHP_EOL;
         echo 'Options:' . PHP_EOL;
+        echo ' --queue       process queue tasks' . PHP_EOL;
         echo ' --version     show version information' . PHP_EOL;
         echo ' --test        some test' . PHP_EOL;
         echo ' --help        show this help' . PHP_EOL;
