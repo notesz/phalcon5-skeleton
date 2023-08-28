@@ -15,7 +15,7 @@ class ModelBase extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setWriteConnectionService("dbMaster");
-        $this->setReadConnectionService("dbSlave");
+        $this->setWriteConnectionService("database");
+        $this->setReadConnectionService("database_slave");
     }
 }
