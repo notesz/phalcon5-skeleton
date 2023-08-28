@@ -68,7 +68,7 @@ return new \Phalcon\Config\Config([
         'no-auto-increment'   => true,
         'skip-ref-schema'     => true,
         'skip-foreign-checks' => true,
-        'migrationsTsBased'   => true
+        'migrationsTsBased'   => false
     ],
 
     'pagination' => [
