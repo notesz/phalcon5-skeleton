@@ -25,10 +25,10 @@ class Module implements ModuleDefinitionInterface
         $loader = new Loader();
 
         $loader->setNamespaces([
-            'Skeleton\Modules\Frontend\Controllers' => __DIR__ . '/controllers/',
-            'Skeleton\Modules\Frontend\Models'      => __DIR__ . '/models/',
-            'Skeleton\Common\Models'                => __DIR__ . '/../../common/models/',
-            'Skeleton\Common\Controllers'           => __DIR__ . '/../../common/controllers/'
+            __NAMESPACE__ . '\Controllers' => __DIR__ . '/controllers/',
+            __NAMESPACE__ . '\Models'      => __DIR__ . '/models/',
+            'Skeleton\Common\Models'       => __DIR__ . '/../../common/models/',
+            'Skeleton\Common\Controllers'  => __DIR__ . '/../../common/controllers/'
         ]);
 
         $loader->register();

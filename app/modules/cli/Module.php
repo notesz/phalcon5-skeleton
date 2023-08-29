@@ -24,8 +24,8 @@ class Module implements ModuleDefinitionInterface
         $loader = new Loader();
 
         $loader->setNamespaces([
-            'Skeleton\Modules\Cli\Tasks' => __DIR__ . '/tasks/',
-            'Skeleton\Common\Models'     => __DIR__ . '/../../common/models/'
+            __NAMESPACE__ . '\Tasks'  => __DIR__ . '/tasks/',
+            'Skeleton\Common\Models' => __DIR__ . '/../../common/models/'
         ]);
 
         $loader->register();
