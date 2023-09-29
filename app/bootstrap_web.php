@@ -92,5 +92,8 @@ try {
 
 } catch (\Exception $e) {
     echo $e->getMessage() . '<br>';
-//    echo '<pre>' . $e->getTraceAsString() . '</pre>';
+    echo '<pre>' . $e->getTraceAsString() . '</pre>';
+} catch (\Throwable $e) {
+    echo $e->getMessage() . '<br>';
+    echo '<pre>' . $e->getTraceAsString() . '</pre>';
 }
