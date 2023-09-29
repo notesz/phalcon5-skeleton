@@ -16,6 +16,9 @@
   "authors" : [
     { "name": "Norbert Lakatos", "email": "norbert@innobotics.eu" }
   ],
+  "autoload": {
+    "files": ["app/helpers.php"]
+  },
   "keywords" : [ "skeleton" ],
   "type" : "project",
   "homepage" : "https://innobotics.eu"
