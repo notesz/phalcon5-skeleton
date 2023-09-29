@@ -11,7 +11,8 @@
     "guzzlehttp/guzzle": "7.7.0",
     "phalcon/proxy-psr3": "^1.0",
     "phpmailer/phpmailer" : "v6.8.0",
-    "phalcon/migrations": "v3.0.1"
+    "phalcon/migrations": "v3.0.1",
+    "maximebf/debugbar": "v1.19.0"
   },
   "authors" : [
     { "name": "Norbert Lakatos", "email": "norbert@innobotics.eu" }

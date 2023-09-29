@@ -39,6 +39,16 @@ try {
     $di = new FactoryDefault();
 
     /**
+     * Debugbar
+     */
+    if (\in_array($_ENV['ENVIRONMENT'],
+        ['dev', 'test']
+    )) {
+        $debugbar = new \DebugBar\StandardDebugBar();
+        $debugbarRenderer = $debugbar->getJavascriptRenderer();
+    }
+
+    /**
      * Include general services
      */
     require APP_PATH . '/config/services.php';
@@ -76,6 +86,9 @@ try {
     );
 
     $response->send();
+
+    echo \str_replace('/vendor/maximebf/debugbar/', '/debugbar/', $debugbarRenderer->renderHead());
+    echo $debugbarRenderer->render();
 
 } catch (\Exception $e) {
     echo $e->getMessage() . '<br>';
