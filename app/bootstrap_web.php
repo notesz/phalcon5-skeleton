@@ -41,11 +41,8 @@ try {
     /**
      * Debugbar
      */
-    if (\in_array($_ENV['ENVIRONMENT'],
-        ['dev', 'test']
-    )) {
+    if ($_ENV['DEBUGBAR'] == 'true') {
         $debugbar = new \DebugBar\StandardDebugBar();
-        $debugbarRenderer = $debugbar->getJavascriptRenderer();
     }
 
     /**
@@ -87,8 +84,11 @@ try {
 
     $response->send();
 
-    echo \str_replace('/vendor/maximebf/debugbar/', '/debugbar/', $debugbarRenderer->renderHead());
-    echo $debugbarRenderer->render();
+    if ($_ENV['DEBUGBAR'] == 'true') {
+        $debugbarRenderer = $debugbar->getJavascriptRenderer();
+        echo \str_replace('/vendor/maximebf/debugbar/', '/debugbar/', $debugbarRenderer->renderHead());
+        echo $debugbarRenderer->render();
+    }
 
 } catch (\Exception $e) {
     echo $e->getMessage() . '<br>';
