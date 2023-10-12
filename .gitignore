@@ -36,3 +36,5 @@ composer.phar
 /components/
 .DS_Store
 /node_modules/
+/log/*
+!/log/.gitkeep
