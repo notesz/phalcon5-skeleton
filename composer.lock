@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "588ff7bc76011d99a69af2d8056b8834",
+    "content-hash": "d8d19e0b1a3402619ebe3472e45acf06",
     "packages": [
         {
             "name": "dariuszp/cli-progress-bar",
@@ -437,6 +437,56 @@
                 }
             ],
             "time": "2023-08-27T10:13:57+00:00"
+        },
+        {
+            "name": "innobotics/imageresize",
+            "version": "1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/innobotics/ImageResize.git",
+                "reference": "868cde7c294d3a742314b3f13f24da761af8e157"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/innobotics/ImageResize/zipball/868cde7c294d3a742314b3f13f24da761af8e157",
+                "reference": "868cde7c294d3a742314b3f13f24da761af8e157",
+                "shasum": ""
+            },
+            "require": {
+                "ext-exif": "*",
+                "ext-gd": "*",
+                "ext-imagick": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Norbert Lakatos",
+                    "homepage": "http://innobotics.eu/"
+                }
+            ],
+            "description": "PHP class to resize images",
+            "homepage": "https://github.com/innobotics/imageresize",
+            "keywords": [
+                "image",
+                "php",
+                "resize",
+                "retina"
+            ],
+            "support": {
+                "issues": "https://github.com/innobotics/ImageResize/issues",
+                "source": "https://github.com/innobotics/ImageResize/tree/1.4.1"
+            },
+            "time": "2018-10-08T10:19:09+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -1615,16 +1665,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v6.3.4",
+            "version": "v6.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "2027be14f8ae8eae999ceadebcda5b4909b81d45"
+                "reference": "3d9999376be5fea8de47752837a3e1d1c5f69ef5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/2027be14f8ae8eae999ceadebcda5b4909b81d45",
-                "reference": "2027be14f8ae8eae999ceadebcda5b4909b81d45",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/3d9999376be5fea8de47752837a3e1d1c5f69ef5",
+                "reference": "3d9999376be5fea8de47752837a3e1d1c5f69ef5",
                 "shasum": ""
             },
             "require": {
@@ -1679,7 +1729,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v6.3.4"
+                "source": "https://github.com/symfony/var-dumper/tree/v6.3.5"
             },
             "funding": [
                 {
@@ -1695,7 +1745,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-08-24T14:51:05+00:00"
+            "time": "2023-09-12T10:11:35+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -1794,5 +1844,5 @@
         "ext-pdo": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

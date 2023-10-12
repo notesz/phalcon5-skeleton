@@ -23,3 +23,6 @@ $router->add('/test/debugbar', [
     'controller' => 'debugbar',
     'action'     => 'debugbar'
 ])->setName('test-debugbar-debugbar');
+
+// image
+include __DIR__ . '/routes_image.php';

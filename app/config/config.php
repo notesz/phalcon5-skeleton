@@ -102,4 +102,36 @@ return new \Phalcon\Config\Config([
         'smtpUsername'      => $_ENV['MAIL_SMTP_USER'],
         'smtpPassword'      => $_ENV['MAIL_SMTP_PASSWORD']
     ],
+
+    'image' => [
+        'size' => [
+            'lgc' => [
+                'width'  => 730,
+                'height' => null,
+                'title'  => 'Large image'
+            ],
+            'md'    => [
+                'width'  => 320,
+                'height' => 240,
+                'title'  => 'Medium image'
+            ],
+            'square' => [
+                'width'  => 300,
+                'height' => 300,
+                'title'  => 'Square image'
+            ],
+            'th' => [
+                'width'  => 160,
+                'height' => 120,
+                'title'  => 'Thumbnail'
+            ],
+        ],
+        'types' => [
+            'gallery' => [
+                'name' => 'Gallery item'
+            ],
+        ],
+        'path' => BASE_PATH . '/data/images',
+        'url'  => $_ENV['BASE_URL'] . '/i',
+    ],
 ]);
