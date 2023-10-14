@@ -154,7 +154,7 @@ class Filestorage
         $file = $this->getFileData($code);
 
         if (!empty($file)) {
-            \unset($file['filepath']);
+            unset($file['filepath']);
         }
 
         return $file;
@@ -170,7 +170,7 @@ class Filestorage
 
         if (!empty($file)) {
             $file['base64'] = \base64_encode(\file_get_contents($file['filepath']));
-            \unset($file['filepath']);
+            unset($file['filepath']);
         }
 
         return $file;

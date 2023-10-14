@@ -64,7 +64,7 @@ class FilestorageController extends \Skeleton\Modules\Test\Controllers\Controlle
     {
         $code = $this->dispatcher->getParam('code');
 
-        $result = $this->di->get('image')->getByCode($code);
+        $result = $this->di->get('filestorage')->info($code);
         $this->view->setVar('result', $result);
     }
 
