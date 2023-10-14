@@ -86,4 +86,24 @@ class FilestorageController extends \Skeleton\Modules\Test\Controllers\Controlle
             ])
         );
     }
+
+    public function downloadAction()
+    {
+        $code = $this->dispatcher->getParam('code');
+
+        $result = $this->di->get('filestorage')->get($code);
+
+        \header('Content-Description: File Transfer');
+        \header('Content-Type: ' . $result['mimetype']);
+        \header('Content-Disposition: attachment; filename="' . \basename($result['filepath']) . '"');
+        \header('Expires: 0');
+        \header('Cache-Control: must-revalidate');
+        \header('Pragma: public');
+        \header('Content-Length: ' . \filesize($result['filepath']));
+        \flush();
+
+        \readfile($result['filepath']);
+
+        return false;
+    }
 }

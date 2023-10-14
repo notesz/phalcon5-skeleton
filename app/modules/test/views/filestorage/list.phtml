@@ -13,6 +13,7 @@
         <th scope="col">Mimetype</th>
         <th scope="col">Size</th>
         <th scope="col">Created date</th>
+        <th scope="col">&nbsp;</th>
     </tr>
     </thead>
     <tbody>
@@ -24,8 +25,11 @@
             <td><?=$item['mimetype']?></td>
             <td><?=$item['filesize']?></td>
             <td><?=$item['created_date']?></td>
-            <th><a class="btn btn-info btn-sm" href="<?=$this->url->get(['for' => 'test-filestorage-edit', 'code' => $item['code']])?>">Edit</th>
-            <th><a class="btn btn-danger btn-sm" href="<?=$this->url->get(['for' => 'test-filestorage-delete', 'code' => $item['code']])?>">Delete</th>
+            <td>
+                <a class="btn btn-info btn-sm" href="<?=$this->url->get(['for' => 'test-filestorage-edit', 'code' => $item['code']])?>">Edit</a>
+                <a class="btn btn-info btn-sm" href="<?=$this->url->get(['for' => 'test-filestorage-download', 'code' => $item['code']])?>">Download</a>
+                <a class="btn btn-danger btn-sm" href="<?=$this->url->get(['for' => 'test-filestorage-delete', 'code' => $item['code']])?>">Delete</a>
+            </td>
         </tr>
     <?php endforeach; ?>
     </tbody>

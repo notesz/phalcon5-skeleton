@@ -27,3 +27,10 @@ $router->add('/test/filestorage/upload', [
     'controller' => 'filestorage',
     'action'     => 'upload'
 ])->setName('test-filestorage-upload');
+
+$router->add('/test/filestorage/download/{code}', [
+    'namespace'  => 'Skeleton\Modules\Test\Controllers',
+    'module'     => 'test',
+    'controller' => 'filestorage',
+    'action'     => 'download'
+])->setName('test-filestorage-download');

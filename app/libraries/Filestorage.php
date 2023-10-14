@@ -170,7 +170,6 @@ class Filestorage
 
         if (!empty($file)) {
             $file['base64'] = \base64_encode(\file_get_contents($file['filepath']));
-            unset($file['filepath']);
         }
 
         return $file;
