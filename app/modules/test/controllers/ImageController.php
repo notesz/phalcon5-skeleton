@@ -17,9 +17,19 @@ class ImageController extends \Skeleton\Modules\Test\Controllers\ControllerBase
 
     public function listAction()
     {
-        $result = $this->di->get('image')->list(1);
+        $result = $this->di->get('image')->list();
 
-        $this->view->setVar('items', $result['items']);
+        $pagination = $this->di->get('pagination')->pager(
+            $result,
+            (
+                empty($this->request->get($this->di->get('config')->pagination->key)) ?
+                    1 :
+                    $this->request->get($this->di->get('config')->pagination->key)
+            )
+        );
+
+        $this->view->setVar('items', $pagination['items']);
+        $this->view->setVar('pager', $pagination['pager']);
     }
 
     public function uploadAction()

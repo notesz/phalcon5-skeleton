@@ -56,7 +56,8 @@ return new \Phalcon\Config\Config([
         'modules'             => \explode(',', $_ENV['MODULES']),
         'appDir'              => APP_PATH . '/',
         'viewsDir'            => [
-            'layout' => APP_PATH . '/common/views/',
+            'layout'     => APP_PATH . '/common/views/',
+            'components' => APP_PATH . '/common/views/components/',
         ],
         'modelsDir'           => APP_PATH . '/common/models/',
         'controllersDir'      => APP_PATH . '/common/controllers/',
@@ -72,9 +73,8 @@ return new \Phalcon\Config\Config([
     ],
 
     'pagination' => [
-        'key'     => 'oldal',
-        'perpage' => 48,
-        'keyword' => 'kereses'
+        'key'     => 'page',
+        'perpage' => 48
     ],
 
     'redis' => [

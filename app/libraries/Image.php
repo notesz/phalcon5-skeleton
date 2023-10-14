@@ -329,7 +329,7 @@ class Image
         }
     }
 
-    public function list(int $currentPage = 1)
+    public function list()
     {
         $images = [];
 
@@ -339,9 +339,7 @@ class Image
             'bind'       => [
                 'tmp' => \Skeleton\Common\Models\Images::TYPE_TEMP
             ],
-            'order'      => 'created_date DESC',
-            'limit'      => $this->config->pagination->perpage,
-            'offset'     => ($currentPage-1) * $this->config->pagination->perpage
+            'order'      => 'created_date DESC'
         ]) as $item) {
             $images[$item->getCode()] = [
                 'code'         => $item->getCode(),
@@ -357,18 +355,7 @@ class Image
             ];
         }
 
-        /** @var \Skeleton\Common\Models\Images::count() $allItemsCount */
-        $allItemsCount = \Skeleton\Common\Models\Images::count([
-            'conditions' => 'type <> :tmp:',
-            'bind'       => [
-                'tmp' => \Skeleton\Common\Models\Images::TYPE_TEMP
-            ]
-        ]);
-
-        return [
-            'allItemsCount' => $allItemsCount,
-            'items'         => $images
-        ];
+        return $images;
     }
 
     private function getNameOfType(string $type)
