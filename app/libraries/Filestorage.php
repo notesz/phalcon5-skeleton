@@ -75,9 +75,8 @@ class Filestorage
         try {
             // Check file
             if (!is_file($filePath)) {
-                throw new \Exception('File not found');
+                throw new \Exception('File not found: ' . $filePath);
             }
-
 
             // Generate code and folder name
             $code = \date('Ym')
@@ -102,11 +101,6 @@ class Filestorage
             $filename = $this->helper->getFriendlyName($title) . '.' . $extension;
 
 
-            // Create folder and copy file
-            \mkdir($this->config->filestorage->path . $dirname, 0777, true);
-            \copy($filePath, $this->config->filestorage->path . $dirname . '/' . $filename);
-
-
             // Save to database
             $files = new \Skeleton\Common\Models\Files();
 
@@ -117,8 +111,9 @@ class Filestorage
             $files->setExtension($extension);
             $files->setMimetype($mimetype);
             $files->setFilesize(
-                \filesize($this->config->file->path . $files->getDirname() . '/' . $files->getFilename())
+                \filesize($filePath)
             );
+            $files->setCreatedDate(\date('Y-m-d H:i:s'));
 
             if ($files->save() === false) {
                 $errorMessage = [];
@@ -130,6 +125,11 @@ class Filestorage
             }
 
 
+            // Create folder and copy file
+            \mkdir($this->config->filestorage->path . $dirname, 0777, true);
+            \copy($filePath, $this->config->filestorage->path . $dirname . '/' . $filename);
+
+
             $this->setResult([
                 'code' => $code
             ]);
@@ -138,13 +138,11 @@ class Filestorage
             return true;
         } catch (MimeDetectorException $e) {
             $this->setMessage($e->getMessage());
-
-            return false;
         } catch (\Exception $e) {
             $this->setMessage($e->getMessage());
-
-            return false;
         }
+
+        return false;
     }
 
     /**
@@ -235,18 +233,18 @@ class Filestorage
             $orderBy = 'ASC';
         }
 
-        /** @var \Skeleton\Common\Models\Files $file */
-        foreach (\Skeleton\Common\Models\Files::findFirst([
+        /** @var \Skeleton\Common\Models\Files $item */
+        foreach (\Skeleton\Common\Models\Files::find([
             'order' => $order . ' ' . $orderBy
         ]) as $item) {
             $files[] = [
-                'code'         => $file->getCode(),
-                'title'        => $file->getTitle(),
-                'filename'     => $file->getFilename(),
-                'filesize'     => $this->helper->getFileSizeFormat($file->getFilesize()),
-                'extension'    => $file->getExtension(),
-                'mimetype'     => $file->getMimetype(),
-                'created_date' => $file->getCreatedDate(),
+                'code'         => $item->getCode(),
+                'title'        => $item->getTitle(),
+                'filename'     => $item->getFilename(),
+                'filesize'     => $this->helper->getFileSizeFormat($item->getFilesize()),
+                'extension'    => $item->getExtension(),
+                'mimetype'     => $item->getMimetype(),
+                'created_date' => $item->getCreatedDate(),
             ];
         }
 

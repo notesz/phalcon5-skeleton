@@ -54,7 +54,7 @@ class Helper
     /**
      * Get a friendly name.
      * Example: Ez egy név -> ez-egy-nev
-     *
+     *2
      * @param string  $string An 'unfriendly' string.
      * @param integer $limit Crop string
      *
