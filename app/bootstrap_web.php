@@ -39,6 +39,13 @@ try {
     $di = new FactoryDefault();
 
     /**
+     * Debugbar
+     */
+    if ($_ENV['DEBUGBAR'] == 'true') {
+        $debugbar = new \DebugBar\StandardDebugBar();
+    }
+
+    /**
      * Include general services
      */
     require APP_PATH . '/config/services.php';
@@ -77,7 +84,16 @@ try {
 
     $response->send();
 
+    if ($_ENV['DEBUGBAR'] == 'true') {
+        $debugbarRenderer = $debugbar->getJavascriptRenderer();
+        echo \str_replace('/vendor/maximebf/debugbar/', '/debugbar/', $debugbarRenderer->renderHead());
+        echo $debugbarRenderer->render();
+    }
+
 } catch (\Exception $e) {
     echo $e->getMessage() . '<br>';
-//    echo '<pre>' . $e->getTraceAsString() . '</pre>';
+    echo '<pre>' . $e->getTraceAsString() . '</pre>';
+} catch (\Throwable $e) {
+    echo $e->getMessage() . '<br>';
+    echo '<pre>' . $e->getTraceAsString() . '</pre>';
 }

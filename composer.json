@@ -11,11 +11,16 @@
     "guzzlehttp/guzzle": "7.7.0",
     "phalcon/proxy-psr3": "^1.0",
     "phpmailer/phpmailer" : "v6.8.0",
-    "phalcon/migrations": "v3.0.1"
+    "phalcon/migrations": "v3.0.1",
+    "maximebf/debugbar": "v1.19.0",
+    "innobotics/imageresize" : "1.4.1"
   },
   "authors" : [
     { "name": "Norbert Lakatos", "email": "norbert@innobotics.eu" }
   ],
+  "autoload": {
+    "files": ["app/helpers.php"]
+  },
   "keywords" : [ "skeleton" ],
   "type" : "project",
   "homepage" : "https://innobotics.eu"

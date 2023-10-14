@@ -8,25 +8,15 @@ $di->set('flash', function () {
     $flash = new Phalcon\Flash\Session();
 
     $flash->setCssClasses([
-        'error'   => 'error_message callout alert radius flashSession',
-        'success' => 'success_message callout success radius flashSession',
-        'warning' => 'warning_message callout warning radius flashSession',
-        'notice'  => 'notice_message callout secondary radius flashSession'
-    ]);
-
-    $flash->setCssIconClasses([
-        'error'   => 'fi-alert',
-        'success' => 'fi-check',
-        'notice'  => 'fi-star',
-        'warning' => 'fi-flag',
+        'error'   => 'alert alert-danger',
+        'success' => 'alert alert-success',
+        'warning' => 'alert alert-info',
+        'notice'  => 'alert alert-info'
     ]);
 
     $flash->setCustomTemplate('
         <div class="%cssClass%">
-            <i class="%cssIconClass%"></i> %message%
-            <button class="close-button" aria-label="Close" type="button" data-close>
-                <span aria-hidden="true">&times;</span>
-            </button>
+            %message%
         </div>'
     );
 
