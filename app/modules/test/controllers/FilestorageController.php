@@ -72,17 +72,16 @@ class FilestorageController extends \Skeleton\Modules\Test\Controllers\Controlle
     {
         $code = $this->dispatcher->getParam('code');
 
-        $result = $this->di->get('image')->delete($code);
-
-        if ($result === true) {
+        $filestorage = $this->di->get('filestorage');
+        if ($filestorage->delete($code) === true) {
             $this->flash->success('Success');
         } else {
-            $this->flash->error($result);
+            $this->flash->error($filestorage->getMessage());
         }
 
         return $this->response->redirect(
             $this->url->get([
-                'for'      => 'test-image-list'
+                'for' => 'test-filestorage-list'
             ])
         );
     }
