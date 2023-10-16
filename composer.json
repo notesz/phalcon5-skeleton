@@ -14,7 +14,8 @@
     "phalcon/migrations": "v3.0.1",
     "maximebf/debugbar": "v1.19.0",
     "innobotics/imageresize" : "1.4.1",
-    "softcreatr/php-mime-detector": "3.2.1"
+    "softcreatr/php-mime-detector": "3.2.1",
+    "peppeocchi/php-cron-scheduler": "^4.0"
   },
   "authors" : [
     { "name": "Norbert Lakatos", "email": "norbert@innobotics.eu" }
