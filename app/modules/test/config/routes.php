@@ -29,3 +29,11 @@ include __DIR__ . '/routes_image.php';
 
 // filestorage
 include __DIR__ . '/routes_filestorage.php';
+
+// phpinfo
+$router->add('/test/phpinfo', [
+    'namespace'  => 'Skeleton\Modules\Test\Controllers',
+    'module'     => 'test',
+    'controller' => 'phpinfo',
+    'action'     => 'phpinfo'
+])->setName('test-phpinfo-phpinfo');
