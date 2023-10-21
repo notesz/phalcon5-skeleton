@@ -68,7 +68,7 @@ class Queue
 
         /** @var \Skeleton\Common\Models\Queue $item */
         foreach (\Skeleton\Common\Models\Queue::find([
-            'conditions' => 'status = :status: AND timing_datetime < :now_datetime:',
+            'conditions' => 'status = :status: AND timing_datetime <= :now_datetime:',
             'bind'       => [
                 'status'       => \Skeleton\Common\Models\Queue::STATUS_NEW,
                 'now_datetime' => \date('Y-m-d H:i:s')
