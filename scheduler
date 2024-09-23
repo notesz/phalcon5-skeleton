@@ -7,7 +7,7 @@ require __DIR__ . '/app/config/scheduler.php';
 $scheduler = new \GO\Scheduler();
 
 foreach ($schedulerSettings as $command => $runAt) {
-    $scheduler->php($command)->everyMinute();
+    $scheduler->php($command)->at($runAt);
 }
 
 $scheduler->run();
