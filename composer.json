@@ -15,7 +15,8 @@
     "maximebf/debugbar": "v1.19.0",
     "innobotics/imageresize" : "1.4.1",
     "softcreatr/php-mime-detector": "3.2.1",
-    "peppeocchi/php-cron-scheduler": "^4.0"
+    "peppeocchi/php-cron-scheduler": "^4.0",
+    "phpoffice/phpspreadsheet": "2.2.2"
   },
   "authors" : [
     { "name": "Norbert Lakatos", "email": "norbert@innobotics.eu" }

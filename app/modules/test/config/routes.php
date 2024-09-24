@@ -37,3 +37,6 @@ $router->add('/test/phpinfo', [
     'controller' => 'phpinfo',
     'action'     => 'phpinfo'
 ])->setName('test-phpinfo-phpinfo');
+
+// xls
+include __DIR__ . '/routes_xls.php';

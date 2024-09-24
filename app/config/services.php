@@ -10,3 +10,4 @@ require_once __DIR__ . '/services/queue.php';
 require_once __DIR__ . '/services/image.php';
 require_once __DIR__ . '/services/pagination.php';
 require_once __DIR__ . '/services/filestorage.php';
+require_once __DIR__ . '/services/xls.php';
