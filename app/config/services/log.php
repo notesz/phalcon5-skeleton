@@ -4,9 +4,7 @@
  * Setting up logger
  */
 $di->setShared('log', function () {
-    $config = $this->getConfig();
-
-    $log = new \Skeleton\Library\Log($config);
+    $log = new \Skeleton\Library\Log();
 
     return $log;
 });

@@ -89,4 +89,44 @@ class ImageController extends \Skeleton\Modules\Test\Controllers\ControllerBase
             ])
         );
     }
+
+    public function saveAction()
+    {
+        $code = $this->dispatcher->getParam('code');
+
+        try {
+            /** @var \Skeleton\Common\Models\Images $image */
+            $image = \Skeleton\Common\Models\Images::findFirst([
+                'conditions' => 'code = :code:',
+                'bind' => [
+                    'code' => $code
+                ]
+            ]);
+
+            if (!$image) {
+                throw new \Exception('Image not found');
+            }
+
+            $image->setTitle($this->request->getPost('title'));
+
+            if ($image->save() === false) {
+                $errorMessage = [];
+                foreach ($image->getMessages() as $message) {
+                    $errorMessage[] = $message;
+                }
+
+                throw new \Exception(\implode(', ', $errorMessage));
+            }
+
+            $this->flash->success('Success');
+        } catch (\Exception $e) {
+            $this->flash->error($e->getMessage());
+        }
+
+        return $this->response->redirect(
+            $this->url->get([
+                'for' => 'test-image-list'
+            ])
+        );
+    }
 }

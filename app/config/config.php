@@ -52,6 +52,15 @@ return new \Phalcon\Config\Config([
         'charset'  => 'utf8'
     ],
 
+    'database_log' => [
+        'enabled' => true,
+        'classes' => [
+            'Skeleton\Common\Models\Files',
+            'Skeleton\Common\Models\Images',
+            'Skeleton\Common\Models\Queue'
+        ]
+    ],
+
     'application' => [
         'modules'             => \explode(',', $_ENV['MODULES']),
         'appDir'              => APP_PATH . '/',

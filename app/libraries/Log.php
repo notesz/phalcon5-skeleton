@@ -16,9 +16,9 @@ class Log
 
     protected $logFilePath;
 
-    public function __construct($config)
+    public function __construct()
     {
-        $this->config = $config;
+        $this->config = \Phalcon\Di\Di::getDefault()->get('config');
 
         if (!is_dir($this->config->log->dir . \date('Y') . '/')) {
             mkdir($this->config->log->dir . \date('Y') . '/');

@@ -4,14 +4,32 @@
 
 <div class="row g-3">
 
+    <form class="row g-3" action="<?=$this->url->get(['for' => 'test-image-save', 'code' => $result['code']])?>" method="post" enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Title of the image" value="<?=$result['title']?>" required>
+        </div>
+
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Save</button>
+            <a href="<?=$this->url->get(['for' => 'test-image-list'])?>" class="btn btn-secondary mb-3">Cancel</a>
+        </div>
+
+    </form>
+
+</div>
+
+<hr />
+
+<h2>Image</h2>
+
+<div class="row g-3">
+
     <p>
         <img src="<?=$result['filepath']['lgc']['filepath']?>" alt="<?=$result['title']?>" />
     </p>
 
     <pre style="padding: 20px; background: #f0f0f0;"><?php print_r($result)?></pre>
-
-    <div class="col-auto">
-        <a href="<?=$this->url->get(['for' => 'test-image-list'])?>" class="btn btn-secondary mb-3">Cancel</a>
-    </div>
 
 </div>

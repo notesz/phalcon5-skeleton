@@ -27,3 +27,10 @@ $router->add('/test/images/upload', [
     'controller' => 'image',
     'action'     => 'upload'
 ])->setName('test-image-upload');
+
+$router->add('/test/images/save/{code}', [
+    'namespace'  => 'Skeleton\Modules\Test\Controllers',
+    'module'     => 'test',
+    'controller' => 'image',
+    'action'     => 'save'
+])->setName('test-image-save');
