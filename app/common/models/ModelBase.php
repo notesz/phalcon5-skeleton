@@ -45,57 +45,42 @@ class ModelBase extends \Phalcon\Mvc\Model
     public function beforeCreate()
     {
         if ($this->isDatabaseLogEnable()) {
-            $this->createInsertDatabaseLog();
+            $this->log([
+                'operation' => 'INSERT'
+            ]);
         }
     }
 
     public function beforeUpdate()
     {
         if ($this->isDatabaseLogEnable()) {
-            $this->createUpdateDatabaseLog();
+            $from = $this->getOldSnapshotData();
+            $to = $this->toArray();
+            $diff = $this->getChangedFields();
+
+            $updatedData = [];
+
+            foreach ($diff as $key) {
+                $updatedData[$key] = [
+                    'from' => $from[$key],
+                    'to' => $to[$key]
+                ];
+            }
+
+            $this->log([
+                'operation' => 'UPDATE',
+                'diff' => $updatedData
+            ]);
         }
     }
 
     public function beforeDelete()
     {
         if ($this->isDatabaseLogEnable()) {
-            $this->createDeleteDatabaseLog();
+            $this->log([
+                'operation' => 'DELETE'
+            ]);
         }
-    }
-
-    private function createInsertDatabaseLog()
-    {
-        $this->log([
-            'operation' => 'INSERT'
-        ]);
-    }
-
-    private function createUpdateDatabaseLog()
-    {
-        $from = $this->getOldSnapshotData();
-        $to = $this->toArray();
-        $diff = $this->getChangedFields();
-
-        $updatedData = [];
-
-        foreach ($diff as $key) {
-            $updatedData[$key] = [
-                'from' => $from[$key],
-                'to' => $to[$key]
-            ];
-        }
-
-        $this->log([
-            'operation' => 'UPDATE',
-            'diff' => $updatedData
-        ]);
-    }
-
-    private function createDeleteDatabaseLog()
-    {
-        $this->log([
-            'operation' => 'DELETE'
-        ]);
     }
 
     private function log(array $messageData)
