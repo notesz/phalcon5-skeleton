@@ -17,10 +17,7 @@ use Phalcon\Logger\Exception;
 class Log
 {
     protected $config;
-
     protected $logger;
-
-    protected $logFilePath;
 
     /**
      * @throws Exception
@@ -29,11 +26,9 @@ class Log
     {
         $this->config = \Phalcon\Di\Di::getDefault()->get('config');
 
-        if (!is_dir($this->config->log->dir . \date('Y') . '/')) {
-            mkdir($this->config->log->dir . \date('Y') . '/');
+        if (!is_dir($this->config->log->dir . date('Y') . '/')) {
+            mkdir($this->config->log->dir . date('Y') . '/');
         }
-
-        $this->logFilePath = $this->config->log->dir . \date('Y') . '/' . $this->config->project . '.' . \date('Ymd') . '.log';
 
         switch ($this->config->log->format) {
             case 'json':
@@ -47,7 +42,9 @@ class Log
                 $formatter->setDateFormat($this->config->log->format_date);
         }
 
-        $adapter = new Stream($this->logFilePath);
+        $adapter = new Stream(
+            $this->config->log->dir . date('Y') . '/' . $this->config->project . '.' . date('Ymd') . '.log'
+        );
         $adapter->setFormatter($formatter);
 
         $this->logger  = new Logger(

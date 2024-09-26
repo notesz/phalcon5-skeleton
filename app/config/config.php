@@ -99,7 +99,7 @@ return new \Phalcon\Config\Config([
 
     'log' => [
         'dir' => BASE_PATH . '/log/',
-        'format' => 'json', // line or json
+        'format' => 'line', // line or json
         'format_line' => '[%level%] - [%date%] - %message%',
         'format_date' => 'Y-m-d H:i:s',
     ],
