@@ -2,6 +2,8 @@
 
 namespace Skeleton\Common\Models;
 
+use Skeleton\Behaviors\Loggable;
+
 /**
  * Class Files
  */
@@ -20,6 +22,8 @@ class Files extends \Skeleton\Common\Models\ModelBase
     public function initialize()
     {
         parent::initialize();
+
+        $this->addBehavior(new Loggable());
     }
 
     /**
