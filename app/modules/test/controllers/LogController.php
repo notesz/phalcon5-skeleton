@@ -19,8 +19,11 @@ class LogController extends \Skeleton\Modules\Test\Controllers\ControllerBase
     {
         $this->di->get('log')->debug('Ouch... It is a debug.');
         $this->di->get('log')->info('Ouch... It is an info.');
+        $this->di->get('log')->notice('Ouch... It is a notice.');
         $this->di->get('log')->warning('Ouch... It is an warning.');
         $this->di->get('log')->error('Ouch... It is an error.');
         $this->di->get('log')->critical('Ouch... It is a critical.');
+        $this->di->get('log')->alert('Ouch... It is an alert.');
+        $this->di->get('log')->emergency('Ouch... It is an emergency.');
     }
 }
