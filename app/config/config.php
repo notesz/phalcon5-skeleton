@@ -53,12 +53,7 @@ return new \Phalcon\Config\Config([
     ],
 
     'database_log' => [
-        'enabled' => true,
-        'classes' => [
-            'Skeleton\Common\Models\Files',
-            'Skeleton\Common\Models\Images',
-            'Skeleton\Common\Models\Queue'
-        ]
+        'enable' => true
     ],
 
     'application' => [
@@ -98,7 +93,10 @@ return new \Phalcon\Config\Config([
     ],
 
     'log' => [
-        'dir' => BASE_PATH . '/log/'
+        'dir' => BASE_PATH . '/log/',
+        'format' => 'line', // line or json
+        'format_line' => '[%level%] - [%date%] - %message%',
+        'format_date' => 'Y-m-d H:i:s',
     ],
 
     'mailer' => [
