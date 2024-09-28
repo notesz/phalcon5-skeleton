@@ -145,4 +145,16 @@ return new \Phalcon\Config\Config([
     'filestorage' => [
         'path' => BASE_PATH . '/data/files',
     ],
+
+    'keycloak' => [
+        'enable'        => ($_ENV['KEYCLOAK_ENABLE'] == 'true' ? true : false),
+        'baseUri'       => $_ENV['KEYCLOAK_SERVER_BASEURI'],
+        'authServerUrl' => $_ENV['KEYCLOAK_SERVER_URL'],
+        'realm'         => $_ENV['KEYCLOAK_REALM'],
+        'clientId'      => $_ENV['KEYCLOAK_CLIENT_ID'],
+        'clientSecret'  => $_ENV['KEYCLOAK_CLIENT_SECRET'],
+        'redirectUri'   => $_ENV['KEYCLOAK_CALLBACK_URL'],
+        'version'       => $_ENV['KEYCLOAK_VERSION'],
+    ],
+
 ]);

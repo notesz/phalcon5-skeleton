@@ -10,11 +10,14 @@ namespace Skeleton\Common\Controllers;
  */
 class ControllerBase extends \Phalcon\Mvc\Controller
 {
+    protected $keycloakUser;
+
     /**
      * Initialize.
      */
     public function initialize()
     {
+        $this->setKeycloak();
     }
 
     /**
@@ -30,6 +33,15 @@ class ControllerBase extends \Phalcon\Mvc\Controller
         ]);
 
         return false;
+    }
+
+    public function setKeycloak()
+    {
+        $this->keycloakUser = [];
+        if ($this->di->get('config')->keycloak->enable === true) {
+            $this->keycloakUser = $this->di->get('keycloak')->getUserDetails();
+        }
+        $this->view->setVar('keycloakUser', $this->keycloakUser);
     }
 
     /**
