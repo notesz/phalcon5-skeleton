@@ -14,8 +14,8 @@ class QueueTask extends \Phalcon\Cli\Task
     {
         echo '[START]' . PHP_EOL;
 
-        foreach ($this->di->get('queue')->getItems() as $item) {
-            echo '[PROCESS] ' . $item['id'] . ' ' . $this->di->get('queue')->process($item['id']) . PHP_EOL;
+        foreach ($this->getDI()->getQueue()->getItems() as $item) {
+            echo '[PROCESS] ' . $item['id'] . ' ' . $this->getDI()->getQueue()->process($item['id']) . PHP_EOL;
         }
 
         echo '[DONE]' . PHP_EOL;

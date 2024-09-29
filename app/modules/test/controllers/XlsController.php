@@ -22,7 +22,7 @@ class XlsController extends \Skeleton\Modules\Test\Controllers\ControllerBase
     public function generateAction()
     {
         /** @var \Skeleton\Library\Xls $xls */
-        $xls = $this->di->get('xls');
+        $xls = $this->getDI()->getXls();
 
         // Set title
         $title = 'XLS example';
@@ -57,19 +57,17 @@ class XlsController extends \Skeleton\Modules\Test\Controllers\ControllerBase
         ]);
 
         // Generate and save cache file
-        $cacheFilePath = $this->di->get('config')->application->cacheDir . \str_replace('-', '', \date('YmdHis')) . '.xlsx';
+        $cacheFilePath = $this->getDI()->getConfig()->application->cacheDir . \str_replace('-', '', \date('YmdHis')) . '.xlsx';
         $xls->save($cacheFilePath);
 
 
         // Save to filestorage
-        $filestorage = $this->di->get('filestorage');
-
-        if ($filestorage->add($title, $cacheFilePath) === true) {
+        if ($this->getDI()->getFilestorage()->add($title, $cacheFilePath) === true) {
 
             // Delete cache file
             \unlink($cacheFilePath);
 
-            $result = $filestorage->getResult();
+            $result = $this->getDI()->getFilestorage()->getResult();
             $this->flash->success('Success: ' . $result['code']);
 
             return $this->response->redirect(
@@ -78,7 +76,7 @@ class XlsController extends \Skeleton\Modules\Test\Controllers\ControllerBase
                 ])
             );
         } else {
-            $this->flash->error($filestorage->getMessage());
+            $this->flash->error($this->getDI()->getFilestorage()->getMessage());
         }
 
         return $this->response->redirect(

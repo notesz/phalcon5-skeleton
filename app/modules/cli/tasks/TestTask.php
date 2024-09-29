@@ -36,24 +36,24 @@ class TestTask extends \Phalcon\Cli\Task
 
     public function randomAction(int $length = 16)
     {
-        echo $this->di->get('helper')->getRandomString($length);
+        echo $this->getDI()->getHelper()->getRandomString($length);
     }
 
     public function uuidAction()
     {
-        echo $this->di->get('helper')->getuuid();
+        echo $this->getDI()->getHelper()->getuuid();
     }
 
     public function mailAction(string $mail = 'test@example.com')
     {
-        $queueId = $this->di->get('queue')->add(\Skeleton\Queue\Mail::TYPE, [
+        $queueId = $this->getDI()->getQueue()->add(\Skeleton\Queue\Mail::TYPE, [
             'to'          => [
                 'email' => $mail,
                 'name'  => $mail
             ],
             'from'        => [
-                'email' => $this->di->get('config')->mailer->senderEmail,
-                'name'  => $this->di->get('config')->mailer->senderName
+                'email' => $this->getDI()->getConfig()->mailer->senderEmail,
+                'name'  => $this->getDI()->getConfig()->mailer->senderName
             ],
             'subject'     => 'Test',
             'body'        => '<p>This is a test...</p>',

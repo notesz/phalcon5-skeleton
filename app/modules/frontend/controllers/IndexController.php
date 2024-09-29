@@ -26,11 +26,11 @@ class IndexController extends \Skeleton\Modules\Frontend\Controllers\ControllerB
 
     public function testcacheAction()
     {
-        $cacheKey = $this->di->get('config')->redis->keyPrefix . '_teszt';
+        $cacheKey = $this->getDI()->getConfig()->redis->keyPrefix . '_teszt';
 
         $source = 'Cache';
 
-        if ($this->di->get('redis')->get($cacheKey) === null) {
+        if ($this->getDI()->getRedis()->get($cacheKey) === null) {
 
             $source = 'Nem cache';
 
@@ -38,10 +38,10 @@ class IndexController extends \Skeleton\Modules\Frontend\Controllers\ControllerB
 
             $content = 'Lorem ipsum...';
 
-            $this->di->get('redis')->set($cacheKey, $content);
+            $this->getDI()->getRedis()->set($cacheKey, $content);
         }
 
-        $content = $this->di->get('redis')->get($cacheKey);
+        $content = $this->getDI()->getRedis()->get($cacheKey);
 
         $this->view->setVar('content', $content);
         $this->view->setVar('source', $source);

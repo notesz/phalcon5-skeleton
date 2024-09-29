@@ -17,15 +17,15 @@ class KeycloakController extends \Skeleton\Common\Controllers\ControllerBase
 
     public function loginAction()
     {
-        return $this->di->get('keycloak')->login();
+        return $this->getDI()->getKeycloak()->login();
     }
 
     public function callbackAction()
     {
-        if ($this->di->get('keycloak')->loginCallback() == true) {
-            $this->flash->success('Success');
+        if ($this->getDI()->getKeycloak()->loginCallback() == true) {
+            $this->getDI()->getFlash()->success('Success');
         } else {
-            $this->flash->error('Error');
+            $this->getDI()->getFlash()->error('Error');
         }
 
         return $this->response->redirect('/');
@@ -33,6 +33,6 @@ class KeycloakController extends \Skeleton\Common\Controllers\ControllerBase
 
     public function logoutAction()
     {
-        return $this->di->get('keycloak')->logout();
+        return $this->getDI()->getKeycloak()->logout();
     }
 }

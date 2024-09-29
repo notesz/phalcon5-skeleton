@@ -17,14 +17,14 @@ class FilestorageController extends \Skeleton\Modules\Test\Controllers\Controlle
 
     public function listAction()
     {
-        $result = $this->di->get('filestorage')->list();
+        $result = $this->getDI()->getFilestorage()->list();
 
-        $pagination = $this->di->get('pagination')->pager(
+        $pagination = $this->getDI()->getPagination()->pager(
             $result,
             (
-            empty($this->request->get($this->di->get('config')->pagination->key)) ?
+            empty($this->request->get($this->getDI()->getConfig()->pagination->key)) ?
                 1 :
-                $this->request->get($this->di->get('config')->pagination->key)
+                $this->request->get($this->getDI()->getConfig()->pagination->key)
             )
         );
 
@@ -39,16 +39,15 @@ class FilestorageController extends \Skeleton\Modules\Test\Controllers\Controlle
             $this->request->hasFiles() === true
         ) {
             foreach ($this->request->getUploadedFiles() as $file) {
-                $filestorage = $this->di->get('filestorage');
 
-                if ($filestorage->add(
+                if ($this->getDI()->getFilestorage()->add(
                     $this->request->getPost('title'),
                     $file->getTempName()
                 ) === true) {
-                    $result = $filestorage->getResult();
+                    $result = $this->getDI()->getFilestorage()->getResult();
                     $this->flash->success('Success: ' . $result['code']);
                 } else {
-                    $this->flash->error($filestorage->getMessage());
+                    $this->flash->error($this->getDI()->getFilestorage()->getMessage());
                 }
 
                 return $this->response->redirect(
@@ -64,7 +63,7 @@ class FilestorageController extends \Skeleton\Modules\Test\Controllers\Controlle
     {
         $code = $this->dispatcher->getParam('code');
 
-        $result = $this->di->get('filestorage')->info($code);
+        $result = $this->getDI()->getFilestorage()->info($code);
         $this->view->setVar('result', $result);
     }
 
@@ -72,11 +71,10 @@ class FilestorageController extends \Skeleton\Modules\Test\Controllers\Controlle
     {
         $code = $this->dispatcher->getParam('code');
 
-        $filestorage = $this->di->get('filestorage');
-        if ($filestorage->delete($code) === true) {
+        if ($this->getDI()->getFilestorage()->delete($code) === true) {
             $this->flash->success('Success');
         } else {
-            $this->flash->error($filestorage->getMessage());
+            $this->flash->error($this->getDI()->getFilestorage()->getMessage());
         }
 
         return $this->response->redirect(
@@ -90,7 +88,7 @@ class FilestorageController extends \Skeleton\Modules\Test\Controllers\Controlle
     {
         $code = $this->dispatcher->getParam('code');
 
-        $result = $this->di->get('filestorage')->get($code);
+        $result = $this->getDI()->getFilestorage()->get($code);
 
         \header('Content-Description: File Transfer');
         \header('Content-Type: ' . $result['mimetype']);

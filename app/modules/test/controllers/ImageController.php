@@ -17,14 +17,14 @@ class ImageController extends \Skeleton\Modules\Test\Controllers\ControllerBase
 
     public function listAction()
     {
-        $result = $this->di->get('image')->list();
+        $result = $this->getDI()->getImage()->list();
 
-        $pagination = $this->di->get('pagination')->pager(
+        $pagination = $this->getDI()->getPagination()->pager(
             $result,
             (
-                empty($this->request->get($this->di->get('config')->pagination->key)) ?
+                empty($this->request->get($this->getDI()->getConfig()->pagination->key)) ?
                     1 :
-                    $this->request->get($this->di->get('config')->pagination->key)
+                    $this->request->get($this->getDI()->getConfig()->pagination->key)
             )
         );
 
@@ -39,7 +39,7 @@ class ImageController extends \Skeleton\Modules\Test\Controllers\ControllerBase
             $this->request->hasFiles() === true
         ) {
             foreach ($this->request->getUploadedFiles() as $file) {
-                $resultUpload = $this->di->get('image')->add(
+                $resultUpload = $this->getDI()->getImage()->add(
                     $file->getTempName(),
                     $this->request->getPost('title'),
                     $this->request->getPost('parent_id'),
@@ -67,7 +67,7 @@ class ImageController extends \Skeleton\Modules\Test\Controllers\ControllerBase
     {
         $code = $this->dispatcher->getParam('code');
 
-        $result = $this->di->get('image')->getByCode($code);
+        $result = $this->getDI()->getImage()->getByCode($code);
         $this->view->setVar('result', $result);
     }
 
@@ -75,7 +75,7 @@ class ImageController extends \Skeleton\Modules\Test\Controllers\ControllerBase
     {
         $code = $this->dispatcher->getParam('code');
 
-        $result = $this->di->get('image')->delete($code);
+        $result = $this->getDI()->getImage()->delete($code);
 
         if ($result === true) {
             $this->flash->success('Success');

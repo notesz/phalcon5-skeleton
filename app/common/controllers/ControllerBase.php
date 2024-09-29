@@ -38,8 +38,8 @@ class ControllerBase extends \Phalcon\Mvc\Controller
     public function setKeycloak()
     {
         $this->keycloakUser = [];
-        if ($this->di->get('config')->keycloak->enable === true) {
-            $this->keycloakUser = $this->di->get('keycloak')->getUserDetails();
+        if ($this->getDI()->getConfig()->keycloak->enable === true) {
+            $this->keycloakUser = $this->getDI()->getKeycloak()->getUserDetails();
         }
         $this->view->setVar('keycloakUser', $this->keycloakUser);
     }

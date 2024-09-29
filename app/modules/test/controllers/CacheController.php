@@ -17,11 +17,11 @@ class CacheController extends \Skeleton\Modules\Test\Controllers\ControllerBase
 
     public function cacheAction()
     {
-        $cacheKey = $this->di->get('config')->redis->keyPrefix . '_teszt';
+        $cacheKey = $this->getDI()->getConfig()->redis->keyPrefix . '_teszt';
 
         $source = 'Cache';
 
-        if ($this->di->get('redis')->get($cacheKey) === null) {
+        if ($this->getDI()->getRedis()->get($cacheKey) === null) {
 
             $source = 'Non cache';
 
@@ -31,10 +31,10 @@ class CacheController extends \Skeleton\Modules\Test\Controllers\ControllerBase
                 'datetime' => \date('Y-m-d H:i:s')
             ];
 
-            $this->di->get('redis')->set($cacheKey, $content);
+            $this->getDI()->getRedis()->set($cacheKey, $content);
         }
 
-        $content = $this->di->get('redis')->get($cacheKey);
+        $content = $this->getDI()->getRedis()->get($cacheKey);
 
         $this->view->setVar('content', $content);
         $this->view->setVar('source', $source);

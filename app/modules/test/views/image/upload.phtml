@@ -13,7 +13,7 @@
         <label for="type" class="form-label">Type</label>
         <select class="form-select" id="type" name="type" aria-label="Default select" required>
             <option>Select a type...</option>
-<?php foreach ($this->di->get('config')->image->types as $typeKey => $typeValue) : ?>
+<?php foreach ($this->getDI()->getConfig()->image->types as $typeKey => $typeValue) : ?>
             <option value="<?=$typeKey?>"><?=$typeValue['name']?></option>
 <?php endforeach; ?>
         </select>
