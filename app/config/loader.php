@@ -9,6 +9,7 @@ $loader->setNamespaces([
     'Skeleton\Common\Models' => APP_PATH . '/common/models/',
     'Skeleton\Traits'        => APP_PATH . '/common/traits/',
     'Skeleton\Behaviors'     => APP_PATH . '/common/behaviors/',
+    'Skeleton\Providers'     => APP_PATH . '/providers/',
     'Skeleton\Library'       => APP_PATH . '/libraries/',
     'Skeleton\Queue'         => APP_PATH . '/queue/',
 ]);

@@ -36,11 +36,6 @@ $dotenv->load();
 $di = new CliDI();
 
 /**
- * Include general services
- */
-include APP_PATH . '/config/services.php';
-
-/**
  * Include cli environment specific services
  */
 include APP_PATH . '/config/services_cli.php';

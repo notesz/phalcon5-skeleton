@@ -9,6 +9,7 @@
 
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Application;
+use Phalcon\Di\ServiceProviderInterface;
 
 ini_set('memory_limit', '512M');
 
@@ -39,26 +40,9 @@ try {
     $di = new FactoryDefault();
 
     /**
-     * Debugbar
-     */
-    if ($_ENV['DEBUGBAR'] == 'true') {
-        $debugbar = new \DebugBar\StandardDebugBar();
-    }
-
-    /**
-     * Include general services
-     */
-    require APP_PATH . '/config/services.php';
-
-    /**
      * Include web environment specific services
      */
     require APP_PATH . '/config/services_web.php';
-
-    /**
-     * Get config service for use in inline setup below
-     */
-    $config = $di->getConfig();
 
     /**
      * Include Autoloader
@@ -78,17 +62,26 @@ try {
     }
     $application->registerModules($registerModules);
 
+    /**
+     * Register application providers
+     */
+    $providers = include APP_PATH . '/config/providers.php';
+    foreach ($providers as $providerClass) {
+        /** @var ServiceProviderInterface $provider */
+        $provider = new $providerClass;
+        $provider->register($di);
+    }
+
+    /**
+     * Get config service for use in inline setup below
+     */
+    $config = $di->getConfig();
+
     $response = $application->handle(
         $_SERVER['REQUEST_URI']
     );
 
     $response->send();
-
-    if ($_ENV['DEBUGBAR'] == 'true') {
-        $debugbarRenderer = $debugbar->getJavascriptRenderer();
-        echo \str_replace('/vendor/maximebf/debugbar/', '/debugbar/', $debugbarRenderer->renderHead());
-        echo $debugbarRenderer->render();
-    }
 
 } catch (\Exception $e) {
     echo $e->getMessage() . '<br>';

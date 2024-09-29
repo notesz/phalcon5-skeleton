@@ -17,9 +17,9 @@ class Queue
     /**
      * Queue constructor.
      */
-    public function __construct($config)
+    public function __construct()
     {
-        $this->config = $config;
+        $this->config = \Phalcon\Di\Di::getDefault()->get('config');
     }
 
     /**
