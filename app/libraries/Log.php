@@ -2,6 +2,7 @@
 
 namespace Skeleton\Library;
 
+use Phalcon\Di\Di;
 use Phalcon\Logger\Formatter\Line;
 use Phalcon\Logger\Formatter\Json;
 use Phalcon\Logger\Logger;
@@ -9,10 +10,7 @@ use Phalcon\Logger\Adapter\Stream;
 use Phalcon\Logger\Exception;
 
 /**
- * Log.
- *
- * @copyright Copyright (c) 2023 innobotics (https://innobotics.eu)
- * @author Norbert Lakatos <norbert@innobotics.eu>
+ * Log library.
  */
 class Log
 {
@@ -24,7 +22,7 @@ class Log
      */
     public function __construct()
     {
-        $this->config = \Phalcon\Di\Di::getDefault()->get('config');
+        $this->config = Di::getDefault()->get('config');
 
         if (!is_dir($this->config->log->dir . date('Y') . '/')) {
             mkdir($this->config->log->dir . date('Y') . '/');

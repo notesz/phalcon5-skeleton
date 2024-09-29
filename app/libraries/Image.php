@@ -2,19 +2,17 @@
 
 namespace Skeleton\Library;
 
+use Skeleton\Common\Models\Images;
+use Innobotics\ImageResize;
+
 /**
- * Image.
- *
- * @copyright Copyright (c) 2023 innobotics (https://innobotics.eu)
- * @author Norbert Lakatos <norbert@innobotics.eu>
+ * Image library.
  */
 class Image
 {
     const EXTENSION = 'jpg';
 
     protected $config;
-
-    /** @var \Skeleton\Library\Helper $helper */
     protected $helper;
 
     /**
@@ -51,7 +49,7 @@ class Image
             // Check type
             $types = $this->config->image->types;
 
-            $enabledTypes[] = \Skeleton\Common\Models\Images::TYPE_TEMP;
+            $enabledTypes[] = Images::TYPE_TEMP;
             foreach ($types as $typeKey => $typeValue) {
                 $enabledTypes[] = $typeKey;
             }
@@ -78,7 +76,7 @@ class Image
 
 
             // Save image
-            $imageResize = new \Innobotics\ImageResize();
+            $imageResize = new ImageResize();
 
             $imageResize->setProgressive(true);
             $imageResize->setSaveOriginal(true);
@@ -102,7 +100,7 @@ class Image
 
 
             // Count images by type and parent
-            $itemCount = \Skeleton\Common\Models\Images::count([
+            $itemCount = Images::count([
                 'conditions' => 'type = :type: AND parent_id = :parent_id:',
                 'bind'       => [
                     'type'      => $type,
@@ -112,7 +110,7 @@ class Image
 
 
             // Save to database
-            $image = new \Skeleton\Common\Models\Images();
+            $image = new Images();
 
             $image->setType($type);
             $image->setParentId($parentId);
@@ -153,8 +151,8 @@ class Image
     {
         try {
             // Image search in database
-            /** @var \Skeleton\Common\Models\Images $image */
-            $image = \Skeleton\Common\Models\Images::findFirst([
+            /** @var Images $image */
+            $image = Images::findFirst([
                 'conditions' => 'code = :code:',
                 'bind'       => [
                     'code' => $code
@@ -198,8 +196,8 @@ class Image
 
 
             // Reorder
-            /** @var \Skeleton\Common\Models\Images $item */
-            foreach (\Skeleton\Common\Models\Images::find([
+            /** @var Images $item */
+            foreach (Images::find([
                 'conditions' => 'parent_id = :parent_id: AND type = :type: AND order_number > :order_number:',
                 'bind'       => [
                     'parent_id'    => $parentId,
@@ -223,8 +221,8 @@ class Image
     public function getByCode(string $code)
     {
         try {
-            /** @var \Skeleton\Common\Models\Images $image */
-            $image = \Skeleton\Common\Models\Images::findFirst([
+            /** @var Images $image */
+            $image = Images::findFirst([
                 'conditions' => 'code = :code:',
                 'bind'       => [
                     'code' => $code
@@ -279,8 +277,8 @@ class Image
         try {
             $result = [];
 
-            /** @var \Skeleton\Common\Models\Images $image */
-            foreach (\Skeleton\Common\Models\Images::find([
+            /** @var Images $image */
+            foreach (Images::find([
                 'conditions' => 'type = :type: AND parent_id = :parent_id:',
                 'bind'       => [
                     'type'      => $type,
@@ -333,11 +331,11 @@ class Image
     {
         $images = [];
 
-        /** @var \Skeleton\Common\Models\Images $item */
-        foreach (\Skeleton\Common\Models\Images::find([
+        /** @var Images $item */
+        foreach (Images::find([
             'conditions' => 'type <> :tmp:',
             'bind'       => [
-                'tmp' => \Skeleton\Common\Models\Images::TYPE_TEMP
+                'tmp' => Images::TYPE_TEMP
             ],
             'order'      => 'created_date DESC'
         ]) as $item) {
@@ -362,7 +360,7 @@ class Image
     {
         $types = $this->config->image->types;
 
-        $enabledTypes[\Skeleton\Common\Models\Images::TYPE_TEMP] = \Skeleton\Common\Models\Images::TYPE_TEMP_NAME;
+        $enabledTypes[Images::TYPE_TEMP] = Images::TYPE_TEMP_NAME;
         foreach ($types as $typeKey => $typeValue) {
             $enabledTypes[$typeKey] = $typeValue['name'];
         }

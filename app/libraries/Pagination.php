@@ -2,11 +2,11 @@
 
 namespace Skeleton\Library;
 
+use Phalcon\Di\Di;
+use Phalcon\Paginator\Adapter\NativeArray as PaginatorNativeArrayAdapter;
+
 /**
- * Pagination.
- *
- * @copyright Copyright (c) 2023 innobotics (https://innobotics.eu)
- * @author Norbert Lakatos <norbert@innobotics.eu>
+ * Pagination library.
  */
 class Pagination
 {
@@ -17,7 +17,7 @@ class Pagination
      */
     function __construct()
     {
-        $this->config = \Phalcon\Di\Di::getDefault()->get('config');
+        $this->config = Di::getDefault()->get('config');
     }
 
     /**
@@ -27,20 +27,15 @@ class Pagination
      */
     public function pager(array $data = [], int $page = 1)
     {
-        $paginator = new \Phalcon\Paginator\Adapter\NativeArray([
+        $paginator = new PaginatorNativeArrayAdapter([
             'data'  => $data,
             'limit' => $this->config->pagination->perpage,
             'page'  => $page,
         ]);
 
-        $items = ['items' => '', 'allItemsCount' => ''];
-        if ($paginator->paginate()->getItems()) {
-            $items = $paginator->paginate()->getItems();
-        }
-
         return [
-            'items'           => $paginator->paginate()->getItems(),
-            'pager'           => [
+            'items' => $paginator->paginate()->getItems(),
+            'pager' => [
                 'all_items_count' => $paginator->paginate()->getTotalItems(),
                 'total_pages'     => \ceil($paginator->paginate()->getTotalItems() / $this->config->pagination->perpage),
                 'total_items'     => $paginator->paginate()->getTotalItems(),

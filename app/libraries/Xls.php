@@ -2,6 +2,9 @@
 
 namespace Skeleton\Library;
 
+use Phalcon\Di\Di;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+
 /**
  * XLS library.
  */
@@ -17,13 +20,13 @@ class Xls
 
     public function __construct()
     {
-        $this->config = \Phalcon\Di\Di::getDefault()->get('config');
+        $this->config = Di::getDefault()->get('config');
 
-        $this->xls   = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $this->xls = new Spreadsheet();
         $this->xls->setActiveSheetIndex(0);
         $this->sheet = $this->xls->getActiveSheet();
-        $this->title = self::DEFAULT_TITLE;
-        $this->rows  = [];
+        $this->rows = [];
+        $this->setTitle(self::DEFAULT_TITLE);
     }
 
     /**

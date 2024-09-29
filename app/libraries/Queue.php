@@ -2,11 +2,11 @@
 
 namespace Skeleton\Library;
 
+use Phalcon\Di\Di;
+use Skeleton\Common\Models\Queue as ModelsQueue;
+
 /**
- * Queue.
- *
- * @copyright Copyright (c) 2023 innobotics (https://innobotics.eu)
- * @author Norbert Lakatos <norbert@innobotics.eu>
+ * Queue library.
  */
 class Queue
 {
@@ -19,7 +19,7 @@ class Queue
      */
     public function __construct()
     {
-        $this->config = \Phalcon\Di\Di::getDefault()->get('config');
+        $this->config = Di::getDefault()->get('config');
     }
 
     /**
@@ -35,14 +35,14 @@ class Queue
             $timingDatetime = \date('Y-m-d H:i:s');
         }
 
-        $queueItem = new \Skeleton\Common\Models\Queue();
+        $queueItem = new ModelsQueue();
 
         $queueItem->setId(null);
         $queueItem->setTask($task);
         $queueItem->setData(\json_encode($data));
         $queueItem->setCreatedDatetime(\date('Y-m-d H:i:s'));
         $queueItem->setTimingDatetime($timingDatetime);
-        $queueItem->setStatus(\Skeleton\Common\Models\Queue::STATUS_NEW);
+        $queueItem->setStatus(ModelsQueue::STATUS_NEW);
         $queueItem->setCounter(0);
         $queueItem->setErrorMessage(\json_encode([]));
 
@@ -66,11 +66,11 @@ class Queue
 
         $queueItems = [];
 
-        /** @var \Skeleton\Common\Models\Queue $item */
-        foreach (\Skeleton\Common\Models\Queue::find([
+        /** @var ModelsQueue $item */
+        foreach (ModelsQueue::find([
             'conditions' => 'status = :status: AND timing_datetime <= :now_datetime:',
             'bind'       => [
-                'status'       => \Skeleton\Common\Models\Queue::STATUS_NEW,
+                'status'       => ModelsQueue::STATUS_NEW,
                 'now_datetime' => \date('Y-m-d H:i:s')
             ],
             'order'      => 'created_datetime',
@@ -78,7 +78,7 @@ class Queue
         ]) as $item) {
             $queueItems[$item->getId()] = $item->toArray();
 
-            $item->setStatus(\Skeleton\Common\Models\Queue::STATUS_PENDING);
+            $item->setStatus(ModelsQueue::STATUS_PENDING);
             $item->setRunDatetime(\date('Y-m-d H:i:s'));
             $item->save();
         }
@@ -96,15 +96,15 @@ class Queue
     {
         // Set status to "new" and set timing_datetime (counter + 5 minutes).
 
-        /** @var \Skeleton\Common\Models\Queue $item */
-        foreach (\Skeleton\Common\Models\Queue::find([
+        /** @var ModelsQueue $item */
+        foreach (ModelsQueue::find([
             'conditions' => 'status = :status: AND counter < :max_error_count:',
             'bind'       => [
-                'status'          => \Skeleton\Common\Models\Queue::STATUS_ERROR,
+                'status'          => ModelsQueue::STATUS_ERROR,
                 'max_error_count' => self::MAX_ERROR_COUNT
             ]
         ]) as $item) {
-            $item->setStatus(\Skeleton\Common\Models\Queue::STATUS_NEW);
+            $item->setStatus(ModelsQueue::STATUS_NEW);
             $item->setTimingDatetime(
                 \date('Y-m-d H:i:s', \strtotime('+' . ($item->getCounter() * 5) . ' minutes'))
             );
@@ -115,14 +115,14 @@ class Queue
 
         // Set status to "error".
 
-        foreach (\Skeleton\Common\Models\Queue::find([
+        foreach (ModelsQueue::find([
             'conditions' => 'status = :status: AND counter >= :max_error_count:',
             'bind'       => [
-                'status'          => \Skeleton\Common\Models\Queue::STATUS_ERROR,
+                'status'          => ModelsQueue::STATUS_ERROR,
                 'max_error_count' => self::MAX_ERROR_COUNT
             ]
         ]) as $item) {
-            $item->setStatus(\Skeleton\Common\Models\Queue::STATUS_DIE);
+            $item->setStatus(ModelsQueue::STATUS_DIE);
             $item->save();
         }
     }
@@ -134,8 +134,8 @@ class Queue
      */
     public function process(int $queueId)
     {
-        /** @var \Skeleton\Common\Models\Queue $queueItem */
-        $queueItem = \Skeleton\Common\Models\Queue::findFirst([
+        /** @var ModelsQueue $queueItem */
+        $queueItem = ModelsQueue::findFirst([
             'conditions' => 'id = :queue_id:',
             'bind'       => [
                 'queue_id' => $queueId
@@ -163,7 +163,7 @@ class Queue
 
                 $queueItem->setRunDatetime(\date('Y-m-d H:i:s'));
                 $queueItem->setCounter($queueItem->getCounter() + 1);
-                $queueItem->setStatus(\Skeleton\Common\Models\Queue::STATUS_SUCCESS);
+                $queueItem->setStatus(ModelsQueue::STATUS_SUCCESS);
                 $queueItem->save();
 
             } catch (\Exception | \Throwable $e) {
@@ -171,7 +171,7 @@ class Queue
 
                 $queueItem->setRunDatetime(\date('Y-m-d H:i:s'));
                 $queueItem->setCounter($queueItem->getCounter() + 1);
-                $queueItem->setStatus(\Skeleton\Common\Models\Queue::STATUS_ERROR);
+                $queueItem->setStatus(ModelsQueue::STATUS_ERROR);
 
                 $errorMessage = \json_decode($queueItem->getErrorMessage(), true);
                 $errorMessage[\date('Y-m-d H:i:s')] = $error;

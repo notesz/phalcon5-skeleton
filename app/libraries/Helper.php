@@ -2,11 +2,10 @@
 
 namespace Skeleton\Library;
 
+use Phalcon\Encryption\Security\Random;
+
 /**
- * Helper.
- *
- * @copyright Copyright (c) 2023 innobotics (https://innobotics.eu)
- * @author Norbert Lakatos <norbert@innobotics.eu>
+ * Helper library.
  */
 class Helper
 {
@@ -34,7 +33,7 @@ class Helper
      */
     public static function getRandomString($length = 20)
     {
-        $random = new \Phalcon\Encryption\Security\Random();
+        $random = new Random();
 
         return \substr($random->hex(300), 0, $length);
     }
@@ -46,7 +45,7 @@ class Helper
      */
     public static function getUuid()
     {
-        $random = new \Phalcon\Encryption\Security\Random();
+        $random = new Random();
 
         return $random->uuid();
     }

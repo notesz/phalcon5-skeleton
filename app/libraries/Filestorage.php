@@ -4,12 +4,11 @@ namespace Skeleton\Library;
 
 use SoftCreatR\MimeDetector\MimeDetector;
 use SoftCreatR\MimeDetector\MimeDetectorException;
+use Phalcon\Di\Di;
+use Skeleton\Common\Models\Files;
 
 /**
- * Filestorage.
- *
- * @copyright Copyright (c) 2023 innobotics (https://innobotics.eu)
- * @author Norbert Lakatos <norbert@innobotics.eu>
+ * Filestorage library.
  */
 class Filestorage
 {
@@ -27,8 +26,8 @@ class Filestorage
      */
     function __construct()
     {
-        $this->config = \Phalcon\Di\Di::getDefault()->get('config');
-        $this->helper = \Phalcon\Di\Di::getDefault()->get('helper');
+        $this->config = Di::getDefault()->get('config');
+        $this->helper = Di::getDefault()->get('helper');
         $this->setResult([]);
         $this->setMessage('');
     }
@@ -102,7 +101,7 @@ class Filestorage
 
 
             // Save to database
-            $files = new \Skeleton\Common\Models\Files();
+            $files = new Files();
 
             $files->setCode($code);
             $files->setTitle($title);
@@ -182,8 +181,8 @@ class Filestorage
     public function delete(string $code)
     {
         try {
-            /** @var \Skeleton\Common\Models\Files $file */
-            $file = \Skeleton\Common\Models\Files::findFirst([
+            /** @var Files $file */
+            $file = Files::findFirst([
                 'conditions' => 'code = :code:',
                 'bind' => [
                     'code' => $code
@@ -232,8 +231,8 @@ class Filestorage
             $orderBy = 'ASC';
         }
 
-        /** @var \Skeleton\Common\Models\Files $item */
-        foreach (\Skeleton\Common\Models\Files::find([
+        /** @var Files $item */
+        foreach (Files::find([
             'order' => $order . ' ' . $orderBy
         ]) as $item) {
             $files[] = [
@@ -256,8 +255,8 @@ class Filestorage
      */
     private function getFileData(string $code)
     {
-        /** @var \Skeleton\Common\Models\Files $file */
-        $file = \Skeleton\Common\Models\Files::findFirst([
+        /** @var Files $file */
+        $file = Files::findFirst([
             'conditions' => 'code = :code:',
             'bind'       => [
                 'code' => $code

@@ -7,7 +7,7 @@ use Phalcon\Http\Request;
 use Stevenmaguire\OAuth2\Client\Provider\Keycloak as KeycloakClient;
 
 /**
- * Keycloak class.
+ * Keycloak library.
  */
 class Keycloak
 {
