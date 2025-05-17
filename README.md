@@ -12,6 +12,7 @@ Unzip files to your docroot and make these permissions
 ```shell
 chmod -R 777 cache
 chmod -R 777 data
+chmod -R 777 log
 chmod 755 cli
 chmod 755 scheduler
 ```
@@ -41,6 +42,12 @@ Run npm build
 npm init -y
 npm install webpack webpack-cli --save-dev
 npm run build
+```
+
+Add `scheduler` to crontab
+
+```shell
+* * * * * user php /path/to/project/scheduler &> /dev/null
 ```
 
 That's all.
