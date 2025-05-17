@@ -66,6 +66,7 @@ try {
      * Register application providers
      */
     $providers = include APP_PATH . '/config/providers.php';
+    $providers = $providers['web'];
     foreach ($providers as $providerClass) {
         /** @var ServiceProviderInterface $provider */
         $provider = new $providerClass;

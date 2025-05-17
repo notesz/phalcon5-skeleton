@@ -19,21 +19,36 @@ use Skeleton\Providers\FlashProvider;
 use Skeleton\Providers\KeycloakProvider;
 
 return [
-    ConfigProvider::class,
-    DatabaseProvider::class,
-    DatabaseSlaveProvider::class,
-    RedisProvider::class,
-    CookiesProvider::class,
-    RouterProvider::class,
-    HelperProvider::class,
-    LogProvider::class,
-    QueueProvider::class,
-    ImageProvider::class,
-    PaginationProvider::class,
-    FileStorageProvider::class,
-    XlsProvider::class,
-    UrlProvider::class,
-    SessionProvider::class,
-    FlashProvider::class,
-    KeycloakProvider::class
+    'cli' => [
+        ConfigProvider::class,
+        DatabaseProvider::class,
+        DatabaseSlaveProvider::class,
+        RedisProvider::class,
+        HelperProvider::class,
+        LogProvider::class,
+        QueueProvider::class,
+        ImageProvider::class,
+        FileStorageProvider::class,
+        XlsProvider::class,
+        KeycloakProvider::class
+    ],
+    'web' => [
+        ConfigProvider::class,
+        DatabaseProvider::class,
+        DatabaseSlaveProvider::class,
+        RedisProvider::class,
+        CookiesProvider::class,
+        RouterProvider::class,
+        HelperProvider::class,
+        LogProvider::class,
+        QueueProvider::class,
+        ImageProvider::class,
+        PaginationProvider::class,
+        FileStorageProvider::class,
+        XlsProvider::class,
+        UrlProvider::class,
+        SessionProvider::class,
+        FlashProvider::class,
+        KeycloakProvider::class
+    ]
 ];

@@ -46,6 +46,17 @@ include APP_PATH . '/config/services_cli.php';
 include APP_PATH . '/config/loader.php';
 
 /**
+ * Register application providers
+ */
+$providers = include APP_PATH . '/config/providers.php';
+$providers = $providers['cli'];
+foreach ($providers as $providerClass) {
+    /** @var ServiceProviderInterface $provider */
+    $provider = new $providerClass;
+    $provider->register($di);
+}
+
+/**
  * Get config service for use in inline setup below
  */
 $config = $di->getConfig();
